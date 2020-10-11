@@ -16,8 +16,10 @@ export function decrement() {
 
 export function asyncIncrement() {
   return function (dispatch) {
+    dispatch(disableButtons());
     setTimeout(() => {
-      dispatch({ type: INCREMENT });
+      dispatch(increment());
+      dispatch(enableButtons());
     }, 1000);
   };
 }

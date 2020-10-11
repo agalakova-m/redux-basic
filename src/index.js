@@ -30,7 +30,6 @@ subBtn.addEventListener('click', () => {
 
 asyncBtn.addEventListener('click', () => {
   store.dispatch(asyncIncrement());
-  store.dispatch(disableButtons());
 });
 
 themeBtn.addEventListener('click', () => {
