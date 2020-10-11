@@ -1,5 +1,5 @@
 import './styles.css';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { rootReducer } from './redux/rootReducer';
 import {
@@ -18,7 +18,14 @@ const subBtn = document.getElementById('sub');
 const asyncBtn = document.getElementById('async');
 const themeBtn = document.getElementById('theme');
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(thunk, logger),
+    window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__(),
+  ),
+);
 
 addBtn.addEventListener('click', () => {
   store.dispatch(increment());
